@@ -59,3 +59,5 @@ Build, flash and test
 1. Press Ctrl+S, then click the hammer icon. You want 0 errors.
 2. Connect the ST-LINK USB, click the bug icon (Debug), and click Resume (F8).
 3. Press and hold the Tamper button. LED1 turns off while it is held and on when released.
+
+i have attached the zip file for tamper button led blink
