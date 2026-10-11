@@ -23,9 +23,9 @@ Add these two lines in the USER CODE BEGIN PD section:
 c
 /* USER CODE BEGIN PD */
 
-#define BUTTON_PRESSED_LEVEL  GPIO_PIN_RESET   /* pressed = Low (pull-up) */
+#define BUTTON_PRESSED_LEVEL  GPIO_PIN_RESET     /* pressed = Low (pull-up) */
 
-#define LED_ON_LEVEL          GPIO_PIN_SET     /* LED on = High */
+#define LED_ON_LEVEL          GPIO_PIN_SET       /* LED on = High */
 
 /* USER CODE END PD */
 
