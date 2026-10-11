@@ -1,0 +1,73 @@
+Step 1: Hardware Explanation
+
+First, let's understand the hardware.
+
+In this project, I'm using two pins.
+
+The first one is PC13, which is connected to the tamper button. The second one is PF10, which is connected to the green LED, LED1.
+
+My goal is simple. When I press the tamper button, the LED should turn on. When I release the button, the LED should turn off.
+
+Step 2: GPIO Configuration in CubeMX
+
+Now, let's open STM32CubeMX.
+
+First, create a new project and select the STM32H743I-EVAL2 board.
+
+After opening the project, go to System Core and select GPIO.
+
+Here, we need to configure two pins.
+
+For the tamper button, PC13, select GPIO Input mode and enable the pull-up resistor.
+
+For the green LED, PF10, select GPIO Output Push-Pull mode. Set the pull configuration to No Pull and the initial output level to Low.
+
+We also need to make sure that the RTC is not using PC13.
+
+After configuring both pins, go to Project Manager. Give the project a name, such as Tamper_Test, select STM32CubeIDE as the toolchain, and generate the code.
+
+Step 3: Understanding the Button Logic
+
+Before writing the code, let's understand how the button works.
+
+Since we've enabled the pull-up resistor, the button input reads High when the button is released.
+
+When we press the button, the input becomes Low.
+
+So, in our code, Low means the button is pressed, and High means the button is released.
+
+Keep this in mind because we'll use this logic in the program.
+
+Step 4: Writing the Code
+
+Now, let's open STM32CubeIDE and go to the main.c file.
+
+Inside the USER CODE BEGIN PD section, we'll define two values.
+
+The first one is BUTTON_PRESSED_LEVEL, which is set to GPIO_PIN_RESET. This means the button is considered pressed when the input is Low.
+
+The second one is LED_ON_LEVEL, which is set to GPIO_PIN_SET. This means the LED turns on when the output is High.
+
+Next, let's go to the main while loop.
+
+Inside the loop, we'll use HAL_GPIO_ReadPin to check the status of the tamper button.
+
+If the button is pressed, the program turns on the green LED using HAL_GPIO_WritePin.
+
+Otherwise, the program writes the opposite output level, which turns the LED off.
+
+The while loop keeps running continuously, so the program can check the button and update the LED whenever the button state changes.
+
+Step 5: Build and Test
+
+Now, let's save the code and build the project.
+
+If there are no errors, connect the board through ST-LINK and start debugging.
+
+Once the program is running, press and hold the tamper button.
+
+You should see the green LED turn off.
+
+When you release the button, the LED should turn on.
+
+That's exactly what we wanted to achieve!
